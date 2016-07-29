@@ -322,8 +322,7 @@
 
       
         
-          
-            <h1 id="使用Retrofit3-0-OkHttp2-0实现缓存处理"><a href="#使用Retrofit3-0-OkHttp2-0实现缓存处理" class="headerlink" title="使用Retrofit3.0+OkHttp2.0实现缓存处理"></a>使用Retrofit3.0+OkHttp2.0实现缓存处理</h1><p>最近在写一个信息流的项目，整个架构是基于 MVP + Retrofit + Rxjava 实现的，由于刚刚使用 RxJava + Retrofit，对它理解不深，所以在一开始做数据缓存的时候还是用常规思维来设计的。</p>
+          <h1 id="使用Retrofit3-0-OkHttp2-0实现缓存处理"><a href="#使用Retrofit3-0-OkHttp2-0实现缓存处理" class="headerlink" title="使用Retrofit3.0+OkHttp2.0实现缓存处理"></a>使用Retrofit3.0+OkHttp2.0实现缓存处理</h1><p>最近在写一个信息流的项目，整个架构是基于 MVP + Retrofit + Rxjava 实现的，由于刚刚使用 RxJava + Retrofit，对它理解不深，所以在一开始做数据缓存的时候还是用常规思维来设计的。</p>
 <p>想到的缓存处理方式：</p>
 <ul>
 <li>使用 sharedpreferences</li>
@@ -336,61 +335,11 @@
 <li>那这样，我们就没有体现出 Retrofit 的强大之处，所以我想如果Retrofit能够做缓存处理就好了。</li>
 </ul>
 <p>这里要吐槽一句，网上关于 Retrofit 和 RxJava 的相关资料真的很少，而且大部分都是重复或只写了一个片段，但功夫不负有心人，还是找到了一些解决方法。</p>
-<h4 id="先说一下为什么要做缓存处理？"><a href="#先说一下为什么要做缓存处理？" class="headerlink" title="先说一下为什么要做缓存处理？"></a>先说一下为什么要做缓存处理？</h4><p>有一篇<a href="http://www.jianshu.com/p/9c3b4ea108a7" target="_blank" rel="external">文章</a>是这样说的：</p>
-<blockquote>
-<p>减少服务器负荷，降低延迟提升用户体验。复杂的缓存策略会根据用户当前的网络情况采取不同的缓存策略，比如在2g网络很差的情况下，提高缓存使用的时间；不用的应用、业务需求、接口所需要的缓存策略也会不一样，有的要保证数据的实时性，所以不能有缓存，有的你可以缓存5分钟，等等。你要根据具体情况所需数据的时效性情况给出不同的方案。当然你也可以全部都一样的缓存策略，看你自己。</p>
-</blockquote>
-<h2 id="Retrofit-OkHttp的缓存机制"><a href="#Retrofit-OkHttp的缓存机制" class="headerlink" title="Retrofit+OkHttp的缓存机制"></a>Retrofit+OkHttp的缓存机制</h2><ul>
-<li>在响应请求之后在 data/data/&lt;包名&gt;/cache 下建立一个response 文件夹，保持缓存数据。</li>
-<li>这样我们就可以在请求的时候，如果判断到没有网络，自动读取缓存的数据。</li>
-<li>同样这也可以实现，在我们没有网络的情况下，重新打开App可以浏览的之前显示过的内容。</li>
-<li>也就是：判断网络，有网络，则从网络获取，并保存到缓存中，无网络，则从缓存中获取。</li>
-</ul>
-<h2 id="缓存实现方式"><a href="#缓存实现方式" class="headerlink" title="缓存实现方式"></a>缓存实现方式</h2><ol>
-<li><p>先开启OkHttp缓存</p>
-<p>在Retrofit2.0版本之后，Retrofit底层自动依赖了OkHttp，所以我们不用重复依赖Okhttp了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">File httpCacheDirectory = <span class="keyword">new</span> File(MyApp.mContext.getCacheDir(), <span class="string">"responses"</span>);</div><div class="line"><span class="keyword">int</span> cacheSize = <span class="number">10</span> * <span class="number">1024</span> * <span class="number">1024</span>; <span class="comment">// 10 MiB</span></div><div class="line">Cache cache = <span class="keyword">new</span> Cache(httpCacheDirectory, cacheSize);</div><div class="line"></div><div class="line">OkHttpClient client = <span class="keyword">new</span> OkHttpClient.Builder()</div><div class="line">        .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)</div><div class="line">        .cache(cache).build();</div></pre></td></tr></table></figure>
-<p>这一步是设置缓存路径，以及缓存大小，其中addInterceptor是我们第二步的内容。</p>
-</li>
-<li><p>设置 OkHttp 拦截器</p>
-<p>主要是拦截操作，包括控制缓存的最大生命值，控制缓存的过期时间</p>
-<p>两个操作都是在 Interceptor 中进行的</p>
-<ul>
-<li><p>通过 CacheControl 控制缓存数据</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CacheControl.Builder cacheBuilder = <span class="keyword">new</span> CacheControl.Builder();</div><div class="line">cacheBuilder.maxAge(<span class="number">0</span>, TimeUnit.SECONDS);<span class="comment">//这个是控制缓存的最大生命时间</span></div><div class="line">cacheBuilder.maxStale(<span class="number">365</span>,TimeUnit.DAYS);<span class="comment">//这个是控制缓存的过时时间</span></div><div class="line">CacheControl cacheControl = cacheBuilder.build();</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置拦截器</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Request request = chain.request();</div><div class="line"><span class="keyword">if</span>(!StateUtils.isNetworkAvailable(MyApp.mContext))&#123;</div><div class="line">    request = request.newBuilder()</div><div class="line">            .cacheControl(cacheControl)</div><div class="line">            .build();</div><div class="line">&#125;</div><div class="line">Response originalResponse = chain.proceed(request);</div><div class="line"><span class="keyword">if</span> (StateUtils.isNetworkAvailable(MyApp.mContext)) &#123;</div><div class="line">    <span class="keyword">int</span> maxAge = <span class="number">60</span>; <span class="comment">// read from cache</span></div><div class="line">    <span class="keyword">return</span> originalResponse.newBuilder()</div><div class="line">            .removeHeader(<span class="string">"Pragma"</span>)</div><div class="line">            .header(<span class="string">"Cache-Control"</span>, <span class="string">"public ,max-age="</span> + maxAge)</div><div class="line">            .build();</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">int</span> maxStale = <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">28</span>; <span class="comment">// tolerate 4-weeks stale</span></div><div class="line">    <span class="keyword">return</span> originalResponse.newBuilder()</div><div class="line">            .removeHeader(<span class="string">"Pragma"</span>)</div><div class="line">            .header(<span class="string">"Cache-Control"</span>, <span class="string">"public, only-if-cached, max-stale="</span> + maxStale)</div><div class="line">            .build();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>可以看到上面两个有设置了相同的内容，有什么区别呢？</p>
-<p>有篇<a href="http://blog.csdn.net/u014614038/article/details/51210685" target="_blank" rel="external">文章</a>是这样解释的：</p>
-<blockquote>
-<p>如果.maxAge(0,TimeUnit.SECONDS)设置的时间比拦截器长是不起效果，如果设置比拦截器设置的时间短就会以这个时间为主，我觉得是为了方便控制。.maxStale(365, TimeUnit.DAYS)设置的是过时时间，我觉得okthhp缓存分成了两个来考虑，一个是为了请求时直接拿缓存省流量，一个是为了下次进入应用时可以直接拿缓存。</p>
-</blockquote>
-<h2 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h2><p>通过这样，我们就可以直接使用同一个Retrofit请求方法，无论是最新数据还是缓存数据，都可以转化为我们需要的对象，直接来使用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">weiBoApiRetrofit() &#123;</div><div class="line"></div><div class="line">    <span class="comment">//cache url</span></div><div class="line">    File httpCacheDirectory = <span class="keyword">new</span> File(MyApp.mContext.getCacheDir(), <span class="string">"responses"</span>);</div><div class="line">    <span class="keyword">int</span> cacheSize = <span class="number">10</span> * <span class="number">1024</span> * <span class="number">1024</span>; <span class="comment">// 10 MiB</span></div><div class="line">    Cache cache = <span class="keyword">new</span> Cache(httpCacheDirectory, cacheSize);</div><div class="line"></div><div class="line">    OkHttpClient client = <span class="keyword">new</span> OkHttpClient.Builder()</div><div class="line">            .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)</div><div class="line">            .cache(cache).build();</div><div class="line"></div><div class="line">    Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</div><div class="line">            .baseUrl(BASE_URL)</div><div class="line">            .client(client)</div><div class="line">            .addConverterFactory(GsonConverterFactory.create())</div><div class="line">            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</div><div class="line">            .build();</div><div class="line"></div><div class="line">    WeiBoApiService = retrofit.create(WeiBoApi.class);</div><div class="line">&#125;</div><div class="line"></div><div class="line">  <span class="comment">//cache</span></div><div class="line">  Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = chain -&gt; &#123;</div><div class="line"></div><div class="line">      CacheControl.Builder cacheBuilder = <span class="keyword">new</span> CacheControl.Builder();</div><div class="line">      cacheBuilder.maxAge(<span class="number">0</span>, TimeUnit.SECONDS);</div><div class="line">      cacheBuilder.maxStale(<span class="number">365</span>,TimeUnit.DAYS);</div><div class="line">      CacheControl cacheControl = cacheBuilder.build();</div><div class="line"></div><div class="line">      Request request = chain.request();</div><div class="line">      <span class="keyword">if</span>(!StateUtils.isNetworkAvailable(MyApp.mContext))&#123;</div><div class="line">          request = request.newBuilder()</div><div class="line">                  .cacheControl(cacheControl)</div><div class="line">                  .build();</div><div class="line">      &#125;</div><div class="line">      Response originalResponse = chain.proceed(request);</div><div class="line">      <span class="keyword">if</span> (StateUtils.isNetworkAvailable(MyApp.mContext)) &#123;</div><div class="line">          <span class="keyword">int</span> maxAge = <span class="number">0</span>; <span class="comment">// read from cache</span></div><div class="line">          <span class="keyword">return</span> originalResponse.newBuilder()</div><div class="line">                  .removeHeader(<span class="string">"Pragma"</span>)</div><div class="line">                  .header(<span class="string">"Cache-Control"</span>, <span class="string">"public ,max-age="</span> + maxAge)</div><div class="line">                  .build();</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">          <span class="keyword">int</span> maxStale = <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span> * <span class="number">28</span>; <span class="comment">// tolerate 4-weeks stale</span></div><div class="line">          <span class="keyword">return</span> originalResponse.newBuilder()</div><div class="line">                  .removeHeader(<span class="string">"Pragma"</span>)</div><div class="line">                  .header(<span class="string">"Cache-Control"</span>, <span class="string">"public, only-if-cached, max-stale="</span> + maxStale)</div><div class="line">                  .build();</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="注意的问题"><a href="#注意的问题" class="headerlink" title="注意的问题"></a>注意的问题</h2><ul>
-<li>缓存是在每一次网络请求之后，重新保存的，所以在超过缓存过期时间后，Retrofit会在检查到没缓存之后自动请求网络服务器数据，这里要自己处理好后续的操作，比如弹个吐司什么的告诉用户没有网络了。</li>
-<li>缓存数据也是需要网络下载的，所以在网络不好的情况下，可能不能立即缓存，这也是我之前犯晕的地方：明明已经设置好缓存了，为什么有时候有缓存，有时候没有呢？- -真是对自己的智商捉急。</li>
-</ul>
-<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
-<li><a href="http://www.tuicool.com/articles/u6ZvyeI" target="_blank" rel="external">Retrofit 源码解读之离线缓存策略的实现</a></li>
-<li><a href="http://blog.csdn.net/u014614038/article/details/51210685" target="_blank" rel="external">教你如何使用okhttp缓存</a></li>
-<li><a href="http://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?lq=1" target="_blank" rel="external">Can Retrofit with OKHttp use cache data when offline</a></li>
-</ul>
-<h2 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h2><ul>
-<li>Email：werbhelius@gmail.com</li>
-<li>Weib：<a href="http://weibo.com/singerwannber" target="_blank" rel="external">UMR80</a></li>
-<li>GitHub:<a href="https://github.com/Werb" target="_blank" rel="external">Werb</a></li>
-<li>Blog：<a href="http://werb.github.io/" target="_blank" rel="external">Werb’s Blog</a></li>
-<li>Stackoverflow：<a href="http://stackoverflow.com/users/6596737/werb?tab=profile" target="_blank" rel="external">Werb</a></li>
-</ul>
-<p>因为我也是刚刚接触 Retrofit + RxJava ,所以有写的不好或不对，以及表达不清楚的地方，请及时指出，我及时修改，PS：不过上面的代码在我测试后是完全可以进行缓存的，希望可以帮到你们。</p>
-</li>
-</ol>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/29/使用Retrofit3-0-OkHttp2-0实现缓存处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

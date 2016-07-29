@@ -106,7 +106,7 @@ Retro">
 但是有一个问题：
 
 Retro">
-<meta property="og:updated_time" content="2016-07-29T13:09:32.308Z">
+<meta property="og:updated_time" content="2016-07-29T13:10:48.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Retrofit3.0+OkHttp2.0实现缓存处理">
 <meta name="twitter:description" content="使用Retrofit3.0+OkHttp2.0实现缓存处理最近在写一个信息流的项目，整个架构是基于 MVP + Retrofit + Rxjava 实现的，由于刚刚使用 RxJava + Retrofit，对它理解不深，所以在一开始做数据缓存的时候还是用常规思维来设计的。
@@ -354,6 +354,7 @@ Retro">
 <li>那这样，我们就没有体现出 Retrofit 的强大之处，所以我想如果Retrofit能够做缓存处理就好了。</li>
 </ul>
 <p>这里要吐槽一句，网上关于 Retrofit 和 RxJava 的相关资料真的很少，而且大部分都是重复或只写了一个片段，但功夫不负有心人，还是找到了一些解决方法。</p>
+<a id="more"></a>
 <h4 id="先说一下为什么要做缓存处理？"><a href="#先说一下为什么要做缓存处理？" class="headerlink" title="先说一下为什么要做缓存处理？"></a>先说一下为什么要做缓存处理？</h4><p>有一篇<a href="http://www.jianshu.com/p/9c3b4ea108a7" target="_blank" rel="external">文章</a>是这样说的：</p>
 <blockquote>
 <p>减少服务器负荷，降低延迟提升用户体验。复杂的缓存策略会根据用户当前的网络情况采取不同的缓存策略，比如在2g网络很差的情况下，提高缓存使用的时间；不用的应用、业务需求、接口所需要的缓存策略也会不一样，有的要保证数据的实时性，所以不能有缓存，有的你可以缓存5分钟，等等。你要根据具体情况所需数据的时效性情况给出不同的方案。当然你也可以全部都一样的缓存策略，看你自己。</p>
