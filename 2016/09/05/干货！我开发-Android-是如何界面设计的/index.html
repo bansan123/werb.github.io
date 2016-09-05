@@ -1,0 +1,730 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="界面设计,图标，配色," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="干货！我开发 Android 是如何界面设计的
+当年，随着 Android 5.0 的面世，Google 也带来了全新的设计规范 Material Design 。第一次看到 Material Design 的应用，简直是太好看了，有没有！
+下面呢，我将主要介绍一下，我在开发时常用到的一些网站
+
+
+界面设计dribbble
+第一个就不得不提大名鼎鼎的 dribbble，上面都是由众多国内外优秀的设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="干货！我开发 Android 是如何界面设计的">
+<meta property="og:url" content="http://yoursite.com/2016/09/05/干货！我开发-Android-是如何界面设计的/index.html">
+<meta property="og:site_name" content="Werb's Blog">
+<meta property="og:description" content="干货！我开发 Android 是如何界面设计的
+当年，随着 Android 5.0 的面世，Google 也带来了全新的设计规范 Material Design 。第一次看到 Material Design 的应用，简直是太好看了，有没有！
+下面呢，我将主要介绍一下，我在开发时常用到的一些网站
+
+
+界面设计dribbble
+第一个就不得不提大名鼎鼎的 dribbble，上面都是由众多国内外优秀的设">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/material_design_app.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/dribbble.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/uplabs.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/adobe.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/adobe2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/ColorDrop.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/materialpalette.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/alibaba.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/icon8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/IMG_0812.JPG">
+<meta property="og:updated_time" content="2016-09-05T13:00:30.382Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="干货！我开发 Android 是如何界面设计的">
+<meta name="twitter:description" content="干货！我开发 Android 是如何界面设计的
+当年，随着 Android 5.0 的面世，Google 也带来了全新的设计规范 Material Design 。第一次看到 Material Design 的应用，简直是太好看了，有没有！
+下面呢，我将主要介绍一下，我在开发时常用到的一些网站
+
+
+界面设计dribbble
+第一个就不得不提大名鼎鼎的 dribbble，上面都是由众多国内外优秀的设">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/material_design_app.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6303766458375603000,
+      author: 'Werb'
+    }
+  };
+</script>
+
+  <title> 干货！我开发 Android 是如何界面设计的 | Werb's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Werb's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Melancholia</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                干货！我开发 Android 是如何界面设计的
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T20:59:41+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/05/干货！我开发-Android-是如何界面设计的/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/05/干货！我开发-Android-是如何界面设计的/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="干货！我开发-Android-是如何界面设计的"><a href="#干货！我开发-Android-是如何界面设计的" class="headerlink" title="干货！我开发 Android 是如何界面设计的"></a>干货！我开发 Android 是如何界面设计的</h1><ul>
+<li>当年，随着 Android 5.0 的面世，Google 也带来了全新的设计规范 Material Design 。第一次看到 Material Design 的应用，简直是太好看了，有没有！</li>
+<li>下面呢，我将主要介绍一下，我在开发时常用到的一些网站</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/material_design_app.jpg" width="600" height="450"></p>
+<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><h4 id="dribbble"><a href="#dribbble" class="headerlink" title="dribbble"></a><a href="https://dribbble.com/" target="_blank" rel="external">dribbble</a></h4><ul>
+<li>第一个就不得不提大名鼎鼎的 dribbble，<br>上面都是由众多国内外优秀的设计师或开发者，分享的一些设计效果图，其中一些内容还分享了通过代码实现的方法，代码基本都是托管在 GitHub 上的，很方面我们去学习。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/dribbble.png" width="700" height="450"></p>
+<h4 id="uplabs"><a href="#uplabs" class="headerlink" title="uplabs"></a><a href="https://www.uplabs.com/" target="_blank" rel="external">uplabs</a></h4><ul>
+<li>相对于 dribbble 各种设计都有，而 uplabs 就相对更专注于是面向我们程序猿的设计，包含 Android，iOS，Web 三个方面，<br>如果你像搜索一下，App , icon ,之类的内容，那这个是最合适不过的了。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/uplabs.png" width="900" height="450"></p>
+<h3 id="配色"><a href="#配色" class="headerlink" title="配色"></a>配色</h3><h4 id="adobe-color"><a href="#adobe-color" class="headerlink" title="adobe color"></a><a href="https://color.adobe.com/zh/explore/newest/" target="_blank" rel="external">adobe color</a></h4><ul>
+<li>Adobe 公司为广大设计者，提供的配色大全，哈哈。如果你有设计的基础，或者想自己去调一些颜色，那这个绝对是你的最爱，涵盖了众多颜色，同时还可以自己自定义。譬如说，去调整色域，透明度等等，应有尽有。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/adobe.png" width="900" height="450"></p>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/adobe2.png" width="900" height="450"></p>
+<h4 id="colordrop"><a href="#colordrop" class="headerlink" title="colordrop"></a><a href="https://colordrop.io/" target="_blank" rel="external">colordrop</a></h4><ul>
+<li>这个是我用的最多的，很简单直接，颜色也特别符合 Material Design,可以选择 HEX 和 RGB 两个颜色格式，不用花心思去找，因为每一种颜色都特别好看。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/ColorDrop.png" width="900" height="450"></p>
+<h4 id="materialpalette"><a href="#materialpalette" class="headerlink" title="materialpalette"></a><a href="https://www.materialpalette.com/indigo/light-green" target="_blank" rel="external">materialpalette</a></h4><ul>
+<li>颜色较少，但是基本常用的都涵盖了，而且可以直观的看到搭配出来的效果，这一点很棒！</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/materialpalette.png" width="900" height="450"></p>
+<h3 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h3><h4 id="iconfont"><a href="#iconfont" class="headerlink" title="iconfont"></a><a href="http://www.iconfont.cn/collections?personal=1" target="_blank" rel="external">iconfont</a></h4><ul>
+<li>阿里巴巴的公开图标库，包括了支付宝，淘宝，天猫等阿里系的全部设计图标，同时还有一些个人设计开发的图标，图标数量特别庞大，可以根据关键字去搜索相应的图标，并且还能自定义颜色。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/alibaba.png" width="700" height="450"></p>
+<h4 id="icon8"><a href="#icon8" class="headerlink" title="icon8"></a><a href="https://icons8.com/web-app/new-icons/all" target="_blank" rel="external">icon8</a></h4><ul>
+<li>涵盖了 Android ，iOS , Windows 众多平台的图标，提供多种类型格式下载。有很多有意思的图标，同时还有 windows 版本客户端。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/icon8.png" width="900" height="450"></p>
+<hr>
+<ul>
+<li>作为一只程序猿，我一直觉得，设计对一个软件是很重要的。</li>
+<li>最近新买了一个数位板，送大家一幅画~</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/%E5%B9%B2%E8%B4%A7%EF%BC%81%E6%88%91%E5%BC%80%E5%8F%91%20Android%20%E6%98%AF%E5%A6%82%E4%BD%95%E9%85%8D%E8%89%B2%E7%9A%84/IMG_0812.JPG" width="500" height="500"></p>
+<h3 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h3><ul>
+<li>Email: 1025004680@qq.com</li>
+<li>Weibo: <a href="http://weibo.com/singerwannber" target="_blank" rel="external">UMR80</a></li>
+<li>GitHub: <a href="https://github.com/Werb" target="_blank" rel="external">Werb</a></li>
+<li>Blog：<a href="http://werb.github.io/" target="_blank" rel="external">Werb’s Blog</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/界面设计/" rel="tag">#界面设计</a>
+          
+            <a href="/tags/图标，配色/" rel="tag">#图标，配色</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/使用Retrofit2+OkHttp3实现缓存处理/" rel="next" title="使用Retrofit2.0+OkHttp3.0实现缓存处理">
+                <i class="fa fa-chevron-left"></i> 使用Retrofit2.0+OkHttp3.0实现缓存处理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/05/干货！我开发-Android-是如何界面设计的/"
+           data-title="干货！我开发 Android 是如何界面设计的" data-url="http://yoursite.com/2016/09/05/干货！我开发-Android-是如何界面设计的/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/icon.png"
+               alt="Werb" />
+          <p class="site-author-name" itemprop="name">Werb</p>
+          <p class="site-description motion-element" itemprop="description">有机会我把我的故事讲给你听</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Werb" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/singerwannber" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#干货！我开发-Android-是如何界面设计的"><span class="nav-number">1.</span> <span class="nav-text">干货！我开发 Android 是如何界面设计的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#界面设计"><span class="nav-number">1.0.1.</span> <span class="nav-text">界面设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dribbble"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">dribbble</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#uplabs"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">uplabs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配色"><span class="nav-number">1.0.2.</span> <span class="nav-text">配色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#adobe-color"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">adobe color</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#colordrop"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">colordrop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#materialpalette"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">materialpalette</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图标"><span class="nav-number">1.0.3.</span> <span class="nav-text">图标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iconfont"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">iconfont</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#icon8"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">icon8</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contact-Me"><span class="nav-number">1.0.4.</span> <span class="nav-text">Contact Me</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Werb</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"werb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
