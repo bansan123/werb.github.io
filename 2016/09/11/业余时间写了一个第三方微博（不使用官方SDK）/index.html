@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="项目实战,日历提醒," />
+  <meta name="keywords" content="MVP + RexJava + Retrofit,微博,项目实战," />
 
 
 
@@ -84,27 +84,38 @@
 
 
 
-<meta name="description" content="Android 日历提醒软件快要毕业答辩了，课题是做一款Android日历提醒软件，最近一直在改论文，代码很久之前就完成了，虽然很多方面写的不好，但还是决定分享出来，希望可以帮助到一些同学，大家也可以对我有缺陷的地方提出建议。
-因为这个项目主要以练手为主，所以在界面和代码编写上参考了很多开源的项目，以实现功能为主。
-GitHub项目地址:https://github.com/Werb/MyCale">
+<meta name="description" content="业余时间写了一个第三方微博（不使用官方SDK）
+前段时间，想要写一个练手的项目，所以决定开发一个第三方微博 App
+分析 Sina WeiboSDK源码，发现官方Api请求在实现、代码风格上存在很多弊端
+本项目中所有的请求，都是利用 RxJava + Retrofit 重新封装请求，并实现无网缓存
+采用 MVP 设计模式，充分解耦，在代码阅读、后期维护上有很好的体验
+由于新浪暂停对第三方微博的审核">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android日历提醒软件">
-<meta property="og:url" content="http://yoursite.com/2016/06/12/Android日历提醒软件/index.html">
+<meta property="og:title" content="业余时间写了一个第三方微博（不使用官方SDK）">
+<meta property="og:url" content="http://yoursite.com/2016/09/11/业余时间写了一个第三方微博（不使用官方SDK）/index.html">
 <meta property="og:site_name" content="Werb's Blog">
-<meta property="og:description" content="Android 日历提醒软件快要毕业答辩了，课题是做一款Android日历提醒软件，最近一直在改论文，代码很久之前就完成了，虽然很多方面写的不好，但还是决定分享出来，希望可以帮助到一些同学，大家也可以对我有缺陷的地方提出建议。
-因为这个项目主要以练手为主，所以在界面和代码编写上参考了很多开源的项目，以实现功能为主。
-GitHub项目地址:https://github.com/Werb/MyCale">
-<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png">
-<meta property="og:updated_time" content="2016-07-09T18:12:21.155Z">
+<meta property="og:description" content="业余时间写了一个第三方微博（不使用官方SDK）
+前段时间，想要写一个练手的项目，所以决定开发一个第三方微博 App
+分析 Sina WeiboSDK源码，发现官方Api请求在实现、代码风格上存在很多弊端
+本项目中所有的请求，都是利用 RxJava + Retrofit 重新封装请求，并实现无网缓存
+采用 MVP 设计模式，充分解耦，在代码阅读、后期维护上有很好的体验
+由于新浪暂停对第三方微博的审核">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_main.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_detail.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_user.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_send.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_comment.png">
+<meta property="og:updated_time" content="2016-09-11T11:35:34.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android日历提醒软件">
-<meta name="twitter:description" content="Android 日历提醒软件快要毕业答辩了，课题是做一款Android日历提醒软件，最近一直在改论文，代码很久之前就完成了，虽然很多方面写的不好，但还是决定分享出来，希望可以帮助到一些同学，大家也可以对我有缺陷的地方提出建议。
-因为这个项目主要以练手为主，所以在界面和代码编写上参考了很多开源的项目，以实现功能为主。
-GitHub项目地址:https://github.com/Werb/MyCale">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png">
+<meta name="twitter:title" content="业余时间写了一个第三方微博（不使用官方SDK）">
+<meta name="twitter:description" content="业余时间写了一个第三方微博（不使用官方SDK）
+前段时间，想要写一个练手的项目，所以决定开发一个第三方微博 App
+分析 Sina WeiboSDK源码，发现官方Api请求在实现、代码风格上存在很多弊端
+本项目中所有的请求，都是利用 RxJava + Retrofit 重新封装请求，并实现无网缓存
+采用 MVP 设计模式，充分解耦，在代码阅读、后期维护上有很好的体验
+由于新浪暂停对第三方微博的审核">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_main.png">
 
 
 
@@ -122,7 +133,7 @@ GitHub项目地址:https://github.com/Werb/MyCale">
   };
 </script>
 
-  <title> Android日历提醒软件 | Werb's Blog </title>
+  <title> 业余时间写了一个第三方微博（不使用官方SDK） | Werb's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +273,7 @@ GitHub项目地址:https://github.com/Werb/MyCale">
             
             
               
-                Android日历提醒软件
+                业余时间写了一个第三方微博（不使用官方SDK）
               
             
           </h1>
@@ -274,8 +285,8 @@ GitHub项目地址:https://github.com/Werb/MyCale">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-12T18:44:57+08:00" content="2016-06-12">
-              2016-06-12
+            <time itemprop="dateCreated" datetime="2016-09-11T19:34:54+08:00" content="2016-09-11">
+              2016-09-11
             </time>
           </span>
 
@@ -304,8 +315,8 @@ GitHub项目地址:https://github.com/Werb/MyCale">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/12/Android日历提醒软件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/Android日历提醒软件/" itemprop="commentsCount"></span>
+                <a href="/2016/09/11/业余时间写了一个第三方微博（不使用官方SDK）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/业余时间写了一个第三方微博（不使用官方SDK）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,32 +339,61 @@ GitHub项目地址:https://github.com/Werb/MyCale">
       
 
       
-        <h1 id="Android-日历提醒软件"><a href="#Android-日历提醒软件" class="headerlink" title="Android 日历提醒软件"></a>Android 日历提醒软件</h1><p>快要毕业答辩了，课题是做一款Android日历提醒软件，最近一直在改论文，代码很久之前就完成了，虽然很多方面写的不好，但还是决定分享出来，希望可以帮助到一些同学，大家也可以对我有缺陷的地方提出建议。</p>
-<p>因为这个项目主要以练手为主，所以在界面和代码编写上参考了很多开源的项目，以实现功能为主。</p>
-<p>GitHub项目地址:<a href="https://github.com/Werb/MyCalendarDemo" target="_blank" rel="external">https://github.com/Werb/MyCalendarDemo</a></p>
-<h3 id="主界面"><a href="#主界面" class="headerlink" title="主界面"></a>主界面</h3><ul>
-<li>整体风格是参考Google日历</li>
-<li>主界面可以根据不同的日期滑动选择查看概要日程信息</li>
-<li>侧滑菜单可以分类按照某一周或某一天查看日程信息</li>
-<li>日历和日程的参考GitHub上的开源项目<a href="https://github.com/Tibolte/AgendaCalendarView" target="_blank" rel="external">AgendaCalendarView</a>，然后根据自己情况，修改代码，配合数据库实现动态数据显示</li>
+        <h1 id="业余时间写了一个第三方微博（不使用官方SDK）"><a href="#业余时间写了一个第三方微博（不使用官方SDK）" class="headerlink" title="业余时间写了一个第三方微博（不使用官方SDK）"></a>业余时间写了一个第三方微博（不使用官方SDK）</h1><ul>
+<li>前段时间，想要写一个练手的项目，所以决定开发一个第三方微博 App</li>
+<li>分析 Sina WeiboSDK源码，发现官方Api请求在实现、代码风格上存在很多弊端</li>
+<li>本项目中所有的请求，都是利用 RxJava + Retrofit 重新封装请求，并实现无网缓存</li>
+<li>采用 MVP 设计模式，充分解耦，在代码阅读、后期维护上有很好的体验</li>
+<li>由于新浪暂停对第三方微博的审核，所以未能通过应用审核，获取更多权限，来完成后续开发，当然也是不能直接运行的</li>
+<li>所以想要运行项目的同学，可以替换成自己的新浪APP key，或者联系我给你添加测试账号</li>
+<li>分享的目的是，我觉得项目中功能还是很不错的，希望可以给予大家一些参考</li>
+<li>GitHub 项目地址 : <a href="https://github.com/Werb/Werb" target="_blank" rel="external">https://github.com/Werb/Werb</a></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png" alt="主界面和侧滑界面"></p>
-<a id="more"></a>
-<h3 id="分类查看-按周或天查看"><a href="#分类查看-按周或天查看" class="headerlink" title="分类查看(按周或天查看)"></a>分类查看(按周或天查看)</h3><p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png" alt="分类查看"></p>
-<h3 id="添加日程提醒和日程信息详情界面"><a href="#添加日程提醒和日程信息详情界面" class="headerlink" title="添加日程提醒和日程信息详情界面"></a>添加日程提醒和日程信息详情界面</h3><ul>
-<li>这里界面完全参考Google日程添加日程界面</li>
-<li>选择日程活动提醒时间、重复次数、是否震动、提醒铃声、显示颜色等</li>
-<li>查看详情界面，同时可以删除和修改日程信息</li>
+<h3 id="微博主界面"><a href="#微博主界面" class="headerlink" title="微博主界面"></a>微博主界面</h3><ul>
+<li>实现微博主页信息流浏览、可以在每条微博中，实现点赞，评论，转发功能</li>
+<li>使用自定义 View 实现九宫格图片显示，同时点击浏览图片，支持左右滑动</li>
+<li>支持下拉刷新，上滑加载，快速回到顶端</li>
+<li>闪屏界面做了类似于 Twitter 闪屏界面的动画处理</li>
+<li>其中对微博正文的文字处理，我觉得是比较有意思的地方，通过正则表达式匹配出 @ ，# ，url，做不同的颜色及点击处理</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png" alt="添加日程提醒和日程信息详情界面"></p>
-<h3 id="日程到点提醒"><a href="#日程到点提醒" class="headerlink" title="日程到点提醒"></a>日程到点提醒</h3><ul>
-<li>提醒只是调用系统弹窗，伴随震动和铃声</li>
-<li>这里涉及Android6.0权限问题，代码中已有相应设置，但由于国内厂商对手机权限修改过多，如果存在不能提醒情况，<br>请手动在设置中打开相应权限</li>
-<li>这里处理的不是很好，有更好的处理方法，大家可以联系告诉我</li>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_main.png" alt="main"></p>
+<h3 id="微博详情界面"><a href="#微博详情界面" class="headerlink" title="微博详情界面"></a>微博详情界面</h3><ul>
+<li>在主页点击微博，可以进入详情界面</li>
+<li>实现了对该条微博的转发，评论功能，同时还可以对该微博下的评论进行回复，转发操作</li>
+<li>利用 CoordinatorLayout 实现父布局与子布局嵌套滑动</li>
+<li>由于微博接口限制，这里只能获取微博下的评论数据，转发和点赞是获取不到的，但在代码编写上三者几乎相同，只是请求的接口不同</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Werb/hexo_images/master/Android%E6%97%A5%E5%8E%86%E6%8F%90%E9%86%92%E8%BD%AF%E4%BB%B6/%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%92%8C%E4%BE%A7%E6%BB%91%E7%95%8C%E9%9D%A2.png" alt="日程到点提醒"></p>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_detail.png" alt="detail"></p>
+<h3 id="微博个人主页"><a href="#微博个人主页" class="headerlink" title="微博个人主页"></a>微博个人主页</h3><ul>
+<li>显示用户的粉丝数，关注数，微博数</li>
+<li>查看个人相册，个人收藏，好友列表（包括粉丝，关注，互粉）</li>
+<li>由于微博接口限制，只能获取部分数据，忍不住吐槽一下，真是太坑了…</li>
+<li>相册是通过个人界面中获取的微博信息，提取出图片参数，自己做处理的，新浪并没有提供获取相册列表的接口</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_user.png" alt="user"></p>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb.png" alt="收藏和相册"></p>
+<h3 id="发微博界面"><a href="#发微博界面" class="headerlink" title="发微博界面"></a>发微博界面</h3><ul>
+<li>通过自定义View，实现emoji表情的添加，采用 ViewPager + GridView，具体请看代码实现</li>
+<li>支持 TAG 话题添加</li>
+<li>通过 TextWatcher 实现输入字符监听</li>
+<li>定位和 @ 还没有实现</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_send.png" alt="send_weibo"></p>
+<h3 id="消息界面"><a href="#消息界面" class="headerlink" title="消息界面"></a>消息界面</h3><ul>
+<li>实现了微博 @ ，评论 @ ，收到的评论，发出的评论四大功能</li>
+<li>点击消息图片可以快捷回复</li>
+<li>点击整个 item 可以跳转到微博详情界面</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Werb/Werb/master/screenshots/werb_comment.png" alt="message"></p>
+<h3 id="闲聊一下"><a href="#闲聊一下" class="headerlink" title="闲聊一下"></a>闲聊一下</h3><ul>
+<li>这个项目我会继续做的，但由于接口的限制，进度应该会很缓慢，有好想法的同学可以联系我，我们来一起做</li>
+<li>想学习 MVP + RexJava + Retrofit 的同学，可以看一下我的这个项目</li>
+<li><a href="">实践！业余时间做的一款阅读类App （MVP + RexJava + Retrofit）</a></li>
+<li>Github 地址在这里 : <a href="https://github.com/Werb/GankWithZhihu" target="_blank" rel="external">https://github.com/Werb/GankWithZhihu</a></li>
+<li>单纯的使用 MVP + RexJava + Retrofit 构建一个项目，没有其他复杂的功能，很适合学习</li>
+<li>欢迎 Star 和 Fork</li>
+</ul>
 <h3 id="License"><a href="#License" class="headerlink" title="License"></a>License</h3><ul>
-<li>再次感谢开源项目<a href="https://github.com/Tibolte/AgendaCalendarView" target="_blank" rel="external">AgendaCalendarView</a>的帮助</li>
 <li>同时希望可以帮助到其他人</li>
 </ul>
 <pre><code>Copyright 2016 Werb
@@ -362,7 +402,7 @@ Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
@@ -371,9 +411,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 </code></pre><h3 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h3><ul>
 <li>Email: 1025004680@qq.com</li>
+<li>Blog : <a href="http://werb.github.io/" target="_blank" rel="external">Werb’s blog</a></li>
 <li>Weibo: <a href="http://weibo.com/singerwannber" target="_blank" rel="external">UMR80</a></li>
-<li>GitHub: <a href="https://github.com/Werb/MyCalendarDemo" target="_blank" rel="external">Werb</a></li>
-<li>Blog：<a href="http://werb.github.io/" target="_blank" rel="external">Werb’s Blog</a></li>
+<li>GitHub: <a href="https://github.com/Werb" target="_blank" rel="external">Werb</a></li>
 </ul>
 
       
@@ -396,9 +436,11 @@ limitations under the License.
       
         <div class="post-tags">
           
-            <a href="/tags/项目实战/" rel="tag">#项目实战</a>
+            <a href="/tags/MVP-RexJava-Retrofit/" rel="tag">#MVP + RexJava + Retrofit</a>
           
-            <a href="/tags/日历提醒/" rel="tag">#日历提醒</a>
+            <a href="/tags/微博/" rel="tag">#微博</a>
+          
+            <a href="/tags/项目实战/" rel="tag">#项目实战</a>
           
         </div>
       
@@ -407,17 +449,13 @@ limitations under the License.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/12/关于Android6-0权限设置问题/" rel="next" title="关于Android6.0权限设置问题">
-                <i class="fa fa-chevron-left"></i> 关于Android6.0权限设置问题
+              <a href="/2016/09/11/实践！业余时间做的一款阅读类App-（MVP-RexJava-Retrofit）/" rel="next" title="实践！业余时间做的一款阅读类App （MVP + RexJava + Retrofit）">
+                <i class="fa fa-chevron-left"></i> 实践！业余时间做的一款阅读类App （MVP + RexJava + Retrofit）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/10/使用hexo搭建自己的博客/" rel="prev" title="使用Hexo搭建自己的博客">
-                使用Hexo搭建自己的博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -443,8 +481,8 @@ limitations under the License.
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/12/Android日历提醒软件/"
-           data-title="Android日历提醒软件" data-url="http://yoursite.com/2016/06/12/Android日历提醒软件/">
+      <div class="ds-thread" data-thread-key="2016/09/11/业余时间写了一个第三方微博（不使用官方SDK）/"
+           data-title="业余时间写了一个第三方微博（不使用官方SDK）" data-url="http://yoursite.com/2016/09/11/业余时间写了一个第三方微博（不使用官方SDK）/">
       </div>
     
   </div>
@@ -555,7 +593,7 @@ limitations under the License.
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-日历提醒软件"><span class="nav-number">1.</span> <span class="nav-text">Android 日历提醒软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主界面"><span class="nav-number">1.0.1.</span> <span class="nav-text">主界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类查看-按周或天查看"><span class="nav-number">1.0.2.</span> <span class="nav-text">分类查看(按周或天查看)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加日程提醒和日程信息详情界面"><span class="nav-number">1.0.3.</span> <span class="nav-text">添加日程提醒和日程信息详情界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日程到点提醒"><span class="nav-number">1.0.4.</span> <span class="nav-text">日程到点提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#License"><span class="nav-number">1.0.5.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contact-Me"><span class="nav-number">1.0.6.</span> <span class="nav-text">Contact Me</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#业余时间写了一个第三方微博（不使用官方SDK）"><span class="nav-number">1.</span> <span class="nav-text">业余时间写了一个第三方微博（不使用官方SDK）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#微博主界面"><span class="nav-number">1.0.1.</span> <span class="nav-text">微博主界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博详情界面"><span class="nav-number">1.0.2.</span> <span class="nav-text">微博详情界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微博个人主页"><span class="nav-number">1.0.3.</span> <span class="nav-text">微博个人主页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发微博界面"><span class="nav-number">1.0.4.</span> <span class="nav-text">发微博界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息界面"><span class="nav-number">1.0.5.</span> <span class="nav-text">消息界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闲聊一下"><span class="nav-number">1.0.6.</span> <span class="nav-text">闲聊一下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#License"><span class="nav-number">1.0.7.</span> <span class="nav-text">License</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Contact-Me"><span class="nav-number">1.0.8.</span> <span class="nav-text">Contact Me</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
