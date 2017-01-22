@@ -1,0 +1,725 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MediaRecorder,video,audio," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="MediaUtilsA demo of record audio and video about Android
+一个在 Android 上实现录像和录音功能的小例子。
+GitHub 地址：https://github.com/Werb/MediaUtils
+ 也可直接点击下载体验
+
+Android 的 MediaRecorder 相信用过的同学一定踩过很多坑
+之前写的代码很乱，现在重构了一下，可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Android】像微信一样录制视频和音频">
+<meta property="og:url" content="http://yoursite.com/2017/01/22/【Android】像微信一样录制视频和音频/index.html">
+<meta property="og:site_name" content="Werb's Blog">
+<meta property="og:description" content="MediaUtilsA demo of record audio and video about Android
+一个在 Android 上实现录像和录音功能的小例子。
+GitHub 地址：https://github.com/Werb/MediaUtils
+ 也可直接点击下载体验
+
+Android 的 MediaRecorder 相信用过的同学一定踩过很多坑
+之前写的代码很乱，现在重构了一下，可">
+<meta property="og:image" content="https://raw.githubusercontent.com/Werb/MediaUtils/master/app/src/main/res/mipmap-xhdpi/video.png">
+<meta property="og:image" content="https://github.com/Werb/MediaUtils/blob/master/screenshots/video.gif?raw=true">
+<meta property="og:image" content="https://github.com/Werb/MediaUtils/blob/master/screenshots/audio.gif?raw=true">
+<meta property="og:updated_time" content="2017-01-22T14:51:25.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【Android】像微信一样录制视频和音频">
+<meta name="twitter:description" content="MediaUtilsA demo of record audio and video about Android
+一个在 Android 上实现录像和录音功能的小例子。
+GitHub 地址：https://github.com/Werb/MediaUtils
+ 也可直接点击下载体验
+
+Android 的 MediaRecorder 相信用过的同学一定踩过很多坑
+之前写的代码很乱，现在重构了一下，可">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Werb/MediaUtils/master/app/src/main/res/mipmap-xhdpi/video.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6303766458375603000,
+      author: 'Werb'
+    }
+  };
+</script>
+
+  <title> 【Android】像微信一样录制视频和音频 | Werb's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Werb's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Melancholia</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                【Android】像微信一样录制视频和音频
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-22T22:44:26+08:00" content="2017-01-22">
+              2017-01-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/22/【Android】像微信一样录制视频和音频/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/【Android】像微信一样录制视频和音频/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MediaUtils"><a href="#MediaUtils" class="headerlink" title="MediaUtils"></a>MediaUtils</h1><p>A demo of record audio and video about Android</p>
+<p>一个在 Android 上实现录像和录音功能的小例子。</p>
+<p>GitHub 地址：<a href="https://github.com/Werb/MediaUtils" target="_blank" rel="external">https://github.com/Werb/MediaUtils</a></p>
+<p><a href="https://fir.im/cbas" target="_blank" rel="external"><img src="https://raw.githubusercontent.com/Werb/MediaUtils/master/app/src/main/res/mipmap-xhdpi/video.png" alt="download"></a> 也可直接点击下载体验</p>
+<ul>
+<li>Android 的 MediaRecorder 相信用过的同学一定踩过很多坑</li>
+<li>之前写的代码很乱，现在重构了一下，可以直接放到自己的项目中用</li>
+<li>本例子将 MediaRecorder 进行了重构，通过 MediaUtils 对外暴露几个必需的方法来实现录像和录音功能</li>
+<li>录制视频界面参考新版微信小视频，还原了微信的动画效果</li>
+<li>支持 Android 7.0</li>
+<li>通过线程及 Exception 等手段避免了常见的 start failed , stop failed 等问题</li>
+<li>重绘了录制视频和录音时的两个自定义view，可在原本基础上进行二次开发</li>
+<li>提供了视频截图方法，支持双击放大，支持自动对焦</li>
+<li>视频录制暂时使用 SurfaceView + Camera , 后续会升级为 TextureView + Camera2</li>
+</ul>
+<a id="more"></a>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="https://github.com/Werb/MediaUtils/blob/master/screenshots/video.gif?raw=true" alt="screenshot" title="home" width="360" height="640"><br><img src="https://github.com/Werb/MediaUtils/blob/master/screenshots/audio.gif?raw=true" alt="screenshot" title="home" width="360" height="640"></p>
+<h3 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h3><h4 id="MediaUtils-1"><a href="#MediaUtils-1" class="headerlink" title="MediaUtils"></a>MediaUtils</h4><ul>
+<li>重构后对外暴露只有8行代码，可结合实际情况使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 初始化</div><div class="line">MediaUtils mediaUtils = new MediaUtils(this);</div><div class="line">mediaUtils.setRecorderType(MediaUtils.MEDIA_VIDEO);</div><div class="line">mediaUtils.setTargetDir(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES));</div><div class="line">mediaUtils.setTargetName(UUID.randomUUID() + &quot;.mp4&quot;);</div><div class="line">mediaUtils.setSurfaceView(surfaceView);</div><div class="line">// 开始录制</div><div class="line">mediaUtils.record()</div><div class="line">// 结束录制 save or unSave</div><div class="line">mediaUtils.stopRecordUnSave();</div><div class="line">mediaUtils.stopRecordSave();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="CameraHelper"><a href="#CameraHelper" class="headerlink" title="CameraHelper"></a>CameraHelper</h4><ul>
+<li>在 Android 中录制视频时显示的 Size 和实际拍照的 Size 是由 Camera 所决定的，最好的方法是计算出可支持的 PreviewSize 和 VideoSize 计算出一个合适的size，同时根据自己视频的用途，选择合理的 Size</li>
+<li>CameraHelper 参考自 GoogleCameraSample 帮助你计算出合适的 Size<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">public static Camera.Size getOptimalVideoSize(List&lt;Camera.Size&gt; supportedVideoSizes,</div><div class="line">        List&lt;Camera.Size&gt; previewSizes, int w, int h) &#123;</div><div class="line">    final double ASPECT_TOLERANCE = 0.1;</div><div class="line">    double targetRatio = (double) w / h;</div><div class="line">    // sizes</div><div class="line">    List&lt;Camera.Size&gt; videoSizes;</div><div class="line">    if (supportedVideoSizes != null) &#123;</div><div class="line">        videoSizes = supportedVideoSizes;</div><div class="line">    &#125; else &#123;</div><div class="line">        videoSizes = previewSizes;</div><div class="line">    &#125;</div><div class="line">    Camera.Size optimalSize = null;</div><div class="line">    // Start with max value and refine as we iterate over available video sizes. This is the</div><div class="line">    // minimum difference between view and camera height.</div><div class="line">    double minDiff = Double.MAX_VALUE;</div><div class="line">    // Target view height</div><div class="line">    int targetHeight = h;</div><div class="line">    // Try to find a video size that matches aspect ratio and the target view size.</div><div class="line">    // Iterate over all available sizes and pick the largest size that can fit in the view and</div><div class="line">    // still maintain the aspect ratio.</div><div class="line">    for (Camera.Size size : videoSizes) &#123;</div><div class="line">        double ratio = (double) size.width / size.height;</div><div class="line">        if (Math.abs(ratio - targetRatio) &gt; ASPECT_TOLERANCE)</div><div class="line">            continue;</div><div class="line">        if (Math.abs(size.height - targetHeight) &lt; minDiff &amp;&amp; previewSizes.contains(size)) &#123;</div><div class="line">            optimalSize = size;</div><div class="line">            minDiff = Math.abs(size.height - targetHeight);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // Cannot find video size that matches the aspect ratio, ignore the requirement</div><div class="line">    if (optimalSize == null) &#123;</div><div class="line">        minDiff = Double.MAX_VALUE;</div><div class="line">        for (Camera.Size size : videoSizes) &#123;</div><div class="line">            if (Math.abs(size.height - targetHeight) &lt; minDiff &amp;&amp; previewSizes.contains(size)) &#123;</div><div class="line">                optimalSize = size;</div><div class="line">                minDiff = Math.abs(size.height - targetHeight);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return optimalSize;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h4><ul>
+<li>仿造新版微信拍摄视频的界面，通过 Paint，RectF，Canvas 绘制</li>
+<li>突然喜欢上了在 Android 画动效，开启 dribbble 抄动效模式</li>
+</ul>
+<p>好了，知识虽小但五脏俱全</p>
+<p>欢迎使用我自己开源的一个 Android 图片选择器</p>
+<ul>
+<li>【PickPhotoView】 Github 地址：<a href="https://github.com/Werb/PickPhotoSample" target="_blank" rel="external">https://github.com/Werb/PickPhotoSample</a></li>
+</ul>
+<p>项目中关于 Android M的权限检查用到了，我的另外一个库</p>
+<ul>
+<li>【PermissionsChecker】Github 地址 ：<a href="https://github.com/Werb/PermissionsCheckerSample" target="_blank" rel="external">https://github.com/Werb/PermissionsCheckerSample</a></li>
+</ul>
+<h3 id="很高兴你看到这里"><a href="#很高兴你看到这里" class="headerlink" title="很高兴你看到这里"></a>很高兴你看到这里</h3><blockquote>
+<p>有时候啊   你总是在追赶前面的人</p>
+<p>总是抱怨自己为什么不能再努力一点</p>
+<p>累了你可以停下来   看看原来的自己</p>
+<p>其实你已经很了不起了。</p>
+</blockquote>
+<p>我是 wanbo 。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MediaRecorder/" rel="tag">#MediaRecorder</a>
+          
+            <a href="/tags/video/" rel="tag">#video</a>
+          
+            <a href="/tags/audio/" rel="tag">#audio</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/01/再见孙悟空，再见2016/" rel="next" title="再见孙悟空，再见2016">
+                <i class="fa fa-chevron-left"></i> 再见孙悟空，再见2016
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/22/【Android】像微信一样录制视频和音频/"
+           data-title="【Android】像微信一样录制视频和音频" data-url="http://yoursite.com/2017/01/22/【Android】像微信一样录制视频和音频/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/icon.png"
+               alt="Werb" />
+          <p class="site-author-name" itemprop="name">Werb</p>
+          <p class="site-description motion-element" itemprop="description">有机会我把我的故事讲给你听</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Werb" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/singerwannber" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MediaUtils"><span class="nav-number">1.</span> <span class="nav-text">MediaUtils</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果图"><span class="nav-number">1.0.1.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心类"><span class="nav-number">1.0.2.</span> <span class="nav-text">核心类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MediaUtils-1"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">MediaUtils</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CameraHelper"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">CameraHelper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义View"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">自定义View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#很高兴你看到这里"><span class="nav-number">1.0.3.</span> <span class="nav-text">很高兴你看到这里</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Werb</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"werb"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
